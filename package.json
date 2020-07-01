@@ -1,0 +1,28 @@
+{
+  "name": "examen",
+  "version": "1.0.0",
+  "description": "Examen de ingreso",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnmanuelAlx/examen.git"
+  },
+  "author": "Enmanuel Madrid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnmanuelAlx/examen/issues"
+  },
+  "homepage": "https://github.com/EnmanuelAlx/examen#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4"
+  }
+}
