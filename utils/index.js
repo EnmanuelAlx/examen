@@ -36,6 +36,19 @@ const pointIntoTriangle = (x1,y1,x2,y2,x3,y3,p1,p2) => {
     return (triangleFather == triangleBigChild + triangleMediumChild + triangleSmallChild) ? true : false
 }
 
+const distanceBetweenTwoPoints = (x1,y1,x2,y2)=>{
+    const exp1 = Math.pow(x2-(x1), 2)
+    const exp2 = Math.pow(y2-(y1), 2)
+    return Math.sqrt(exp1+exp2)
+}
+
+const calculatePerimeter = (x1,y1,x2,y2,x3,y3)=>{
+    const dab = distanceBetweenTwoPoints(x1,y1,x2,y2)
+    const dac = distanceBetweenTwoPoints(x1,y1,x3,y3)
+    const dbc = distanceBetweenTwoPoints(x2,y2,x3,y3)
+    return dab + dac + dbc
+}
+
 const verifyRain = (planets, day)=>{
     let coor = []
     planets.forEach((planet)=>{
@@ -44,7 +57,6 @@ const verifyRain = (planets, day)=>{
     })
     return pointIntoTriangle(...coor, 0,0)
 }
-
 
 const verifyDrought = (planets, day) => {
     let coor = []
@@ -73,8 +85,10 @@ module.exports = {
     colineal,
     calculateSlope,
     areaTriangle,
-    verifyDrought,
     distanceBetweenPointLane,
     pointIntoTriangle,
-    verifyRain
+    distanceBetweenTwoPoints,
+    calculatePerimeter,
+    verifyRain,
+    verifyDrought,
 }

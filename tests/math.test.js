@@ -23,3 +23,11 @@ test('Colineal', () => {
 test('Point into a Triangle', () => {
     expect(util.pointIntoTriangle(0,0,20,0,10,30,10,15)).toBe(true)
 });
+
+test('Distance Between two points', () => {
+    expect(util.distanceBetweenTwoPoints(7,4,1,2)).toBe(6.324555320336759)
+});
+
+test('Calculate Perimeter', () => {
+    expect(util.calculatePerimeter(3,-2,-3,0,1,3)).toBe(16.709720127471265)
+});
