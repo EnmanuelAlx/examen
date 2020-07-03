@@ -14,6 +14,10 @@ class Planet{
         return day*this.speed*this.sense
     }
 
+    get coordinates(){
+        return [this.x, this.y]
+    }
+
     position(day){
         let angle = this.angleInTheDay(day)
         let radial = util.angleToRadial(angle);

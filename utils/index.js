@@ -9,9 +9,7 @@ const calculateSlope = (p1, p2)=>{
 }
 
 const areaTriangle = (x1,y1,x2,y2,x3,y3)=>{
-    const exp1 = (x1*y2)+(x2*y3)+(x3*y1)
-    const exp2 = (x1*y3)+(x3*y2)+(x2*y1) 
-    return (exp1 - exp2)/2
+    return Math.abs((x1*y2 + x2*y3 + x3*y1 - y1*x2 - y2*x3 - y3*x1) / 2.0) 
 }
 
 const colineal = (x1,y1,x2,y2,x3,y3)=> {
@@ -28,6 +26,23 @@ const distanceBetweenPointLane = (p1, p2, origin)=>{
     }
     let dis = (Math.abs((p1[0] * xy[0]) + (p1[1] * xy[1]) + (m)) )/  Math.sqrt(Math.pow(p1[0], 2) + Math.pow(p1[1], 2))
     return dis
+}
+
+const pointIntoTriangle = (x1,y1,x2,y2,x3,y3,p1,p2) => {
+    const triangleFather = areaTriangle(x1,y1,x2,y2,x3,y3)
+    const triangleBigChild = areaTriangle(x1,y1,x2,y2,p1,p2) 
+    const triangleMediumChild = areaTriangle(x1,y1,p1,p2,x3,y3) 
+    const triangleSmallChild = areaTriangle(p1,p2,x2,y2,x3,y3)
+    return (triangleFather == triangleBigChild + triangleMediumChild + triangleSmallChild) ? true : false
+}
+
+const verifyRain = (planets, day)=>{
+    let coor = []
+    planets.forEach((planet)=>{
+        planet.position(day)
+        coor.push(...planet.coordinates)
+    })
+    return pointIntoTriangle(...coor, 0,0)
 }
 
 
@@ -59,5 +74,7 @@ module.exports = {
     calculateSlope,
     areaTriangle,
     verifyDrought,
-    distanceBetweenPointLane
+    distanceBetweenPointLane,
+    pointIntoTriangle,
+    verifyRain
 }

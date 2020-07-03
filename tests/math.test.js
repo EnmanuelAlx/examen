@@ -19,3 +19,7 @@ test('Area of a triangle', () => {
 test('Colineal', () => {
     expect(util.colineal(5,0,20,0,10,0)).toBe(true)
 });
+
+test('Point into a Triangle', () => {
+    expect(util.pointIntoTriangle(0,0,20,0,10,30,10,15)).toBe(true)
+});
