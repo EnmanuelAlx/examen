@@ -1,6 +1,6 @@
 const config = require('../config')
 const dotenv = require('dotenv');
-dotenv.config({path: '../.env'});
+dotenv.config();
 
 const DataBase = require('../db')
 const Weather = require('../models/Weather')
