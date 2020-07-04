@@ -2,16 +2,17 @@ const config = require('./config')
 const { Client } = require('pg')
 const Weather = require('./models/Weather')
 class DataBase{
-    constructor(env){
+    constructor(host, database, user, port, password){
         
         if(typeof DataBase.instance === "object"){
             return DataBase.instance
         }else{
-            this.user = env.user
-            this.password = env.password
-            this.database = env.database
-            this.host     = env.host
-            this.dialect  = env.dialect
+            this.user = user
+            this.password = password
+            this.database = database
+            this.host     = host
+            this.port     = port
+            
             this.client = null;
 
             DataBase.instance = this

@@ -1,12 +1,11 @@
-const config = require('../config')
 const dotenv = require('dotenv');
 dotenv.config();
 
-const DataBase = require('../db')
-const Weather = require('../models/Weather')
-const SolarSystem = require('../models/SolarSystem')
-const { MAXIMUMPERIMETER } = require('../const')
-const util = require('../utils')
+const DataBase = require('./db')
+const Weather = require('./models/Weather')
+const SolarSystem = require('./models/SolarSystem')
+const { MAXIMUMPERIMETER } = require('./const')
+const util = require('./utils')
 
 const  WithoutPredict = (day)=>{
     const solarSystem = new SolarSystem()
