@@ -20,6 +20,7 @@ class SolarSystem{
             planet.position(days)
         });
     }
+    
 }
 
 module.exports = SolarSystem
