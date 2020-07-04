@@ -5,24 +5,25 @@ const util = require('../utils')
 class WeatherController{
 
     static predict(req, res){
-        let { day } = req.params;
-        switch (WeatherController.WithoutPredict(day)) {
-            case 0:
-                res.status(200).send({'day': day, 'weather': 'Drought'})
-                break;
-            case 1:
-                res.status(200).send({'day': day, 'weather': 'Optimum'})
-                break
-            case 2:
-                res.status(200).send({'day': day, 'weather': 'Rainy'})
-                break
-            case 3:
-                res.status(200).send({'day': day, 'weather': 'Heavy Rainy'})
-                break
-            default:
-                res.status(200).send({'day': day, 'weather': 'Without forecast'})
-                break;
+        let { day } = req.params
+        const weather = WeatherController.option(WeatherController.WithoutPredict(day))
+        res.status(200).send({'day': day, 'weather': weather})   
+    }
+
+    static predictByYear(req, res){
+        const { year } = req.params
+        const days = 360 * year
+        let daysPrediction = []
+
+        for (let i = 0; i <= days; i++) {
+
+            let weather = WeatherController.option(WeatherController.WithoutPredict(i))
+            daysPrediction.push({'day': i, 'weather' : weather})
+
         }
+        
+        res.status(200).send({'year': year, 'predictions': daysPrediction})
+
     }
 
     static WithoutPredict(day){
@@ -55,6 +56,20 @@ class WeatherController{
         return -1
     }
 
+    static option(op){
+        switch (op) {
+            case 0:
+                return 'Drought'
+            case 1:
+                return 'Optimum'
+            case 2:
+                return 'Rainy'
+            case 3:
+                return 'Heavy Rainy'
+            default:
+                return 'Without forecast'
+        }
+    }
 
 
 }
