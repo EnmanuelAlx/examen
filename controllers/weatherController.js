@@ -1,4 +1,5 @@
 const SolarSystem = require('../models/SolarSystem')
+const { MAXIMUMPERIMETER } = require('../const')
 const util = require('../utils')
 
 class WeatherController{
@@ -14,6 +15,9 @@ class WeatherController{
                 break
             case 2:
                 res.status(200).send({'day': day, 'weather': 'Rainy'})
+                break
+            case 3:
+                res.status(200).send({'day': day, 'weather': 'Heavy Rainy'})
                 break
             default:
                 res.status(200).send({'day': day, 'weather': 'Without forecast'})
@@ -44,6 +48,8 @@ class WeatherController{
             }
 
         } else if (util.pointIntoTriangle(...coor, 0,0)) {
+            if(util.calculatePerimeter(...coor) == MAXIMUMPERIMETER) 
+                return 3
             return 2
         }
         return -1
