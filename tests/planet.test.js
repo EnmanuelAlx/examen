@@ -68,3 +68,9 @@ describe('Case 1: Planets aligned with the sun', () => {
     });
 });
 
+
+test('Calculate Max perimeter', () => {
+    const solarSystem = new SolarSystem()
+    solarSystem.initialize()
+    expect(util.calculateMaxPerimeter(solarSystem)).toBe(6261.074380339542)
+});

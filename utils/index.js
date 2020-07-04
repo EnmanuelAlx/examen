@@ -49,6 +49,25 @@ const calculatePerimeter = (x1,y1,x2,y2,x3,y3)=>{
     return dab + dac + dbc
 }
 
+// 6261.074380339542
+const calculateMaxPerimeter = (solarSystem) => {
+    let perimeters = [];
+    for (let i = 0; i < 4000; i++) {
+        
+        solarSystem.movePlanets(i)
+        let coor = []
+        solarSystem.planets.forEach((planet)=>{
+            coor.push(...planet.coordinates)
+        })
+        if(!colineal(...coor) && pointIntoTriangle(...coor, 0,0)){
+            let perimeter = calculatePerimeter(...coor)
+            perimeters.push(perimeter)
+        }
+    }
+    return Math.max(...perimeters)
+}
+
+
 const verifyRain = (planets, day)=>{
     let coor = []
     planets.forEach((planet)=>{
@@ -89,6 +108,7 @@ module.exports = {
     pointIntoTriangle,
     distanceBetweenTwoPoints,
     calculatePerimeter,
+    calculateMaxPerimeter,
     verifyRain,
     verifyDrought,
 }
