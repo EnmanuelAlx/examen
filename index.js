@@ -9,7 +9,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 const weatherRoutes = require('./routes/weatherRoutes')
-const job = require('./jobs/job')
+const job = require('./job')
 
 job.predictedTenYears();
 
