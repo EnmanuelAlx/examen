@@ -1,8 +1,7 @@
-const config = require('./config')
-const { Client } = require('pg')
-const Weather = require('./models/Weather')
+
+const { Pool } = require('pg')
 class DataBase{
-    constructor(host, database, user, port, password){
+    constructor(host, database, user, port, password, connectionString){
         
         if(typeof DataBase.instance === "object"){
             return DataBase.instance
@@ -12,7 +11,7 @@ class DataBase{
             this.database = database
             this.host     = host
             this.port     = port
-            
+            this.connectionString = connectionString
             this.client = null;
 
             DataBase.instance = this
@@ -23,12 +22,11 @@ class DataBase{
     }
 
     init(){
-        this.client = new Client({
-            user: this.user,
-            host: this.host,
-            database: this.database,
-            password: this.password,
-            port: this.port
+        this.client = new Pool({
+            connectionString: this.connectionString,
+            ssl: {
+                rejectUnauthorized: false
+            }
         })
         this.client.connect()
     }   

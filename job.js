@@ -53,7 +53,7 @@ const option = (op)=>{
 }
 
 const predictedTenYears =async ()=>{
-    const db = new DataBase(process.env.HOST,process.env.DATABASE,process.env.USER,process.env.DB_PORT,process.env.PASSWORD)
+    const db = new DataBase(process.env.HOST,process.env.DATABASE,process.env.USER,process.env.DB_PORT,process.env.PASSWORD, process.env.DATABASE_URL)
     db.init()
     await db.client.query(Weather.createdTableIfNotExist())
     const days = 360 * 10;
