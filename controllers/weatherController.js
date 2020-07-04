@@ -7,13 +7,13 @@ class WeatherController{
         const { day } = req.query
         const db = new DataBase()
         const weather = await db.client.query(Weather.findByDay(day))
-        res.status(200).send(...weather.rows)   
+        return res.status(200).send(...weather.rows)   
     }
 
     static async answers(req, res){
         const db = new DataBase()
         const weather = await db.client.query(Weather.getGroup())
-        res.status(200).send(weather.rows)
+        return res.status(200).send(weather.rows)
     }
 
 }
